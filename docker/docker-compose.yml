@@ -1,0 +1,16 @@
+#docker build --no-cache --progress=plain -f dockerfile.txt ../
+version: '2.0'
+services:
+  hetzner-dynamic-dns:
+    build:
+      context: ../
+      dockerfile: ./docker/dockerfile.txt
+    container_name: hetzner-dynamic-dns
+    image: maskawanian/hetzner-dynamic-dns:latest
+    restart: always
+    environment:
+     - TZ=America/Winnipeg
+     - HETZNER_API_KEY=
+     - HETZNER_TARGET_ZONE=
+     - HETZNER_TARGET_RECORD_NAME=
+     - HETZNER_TARGET_RECORD_TYPE=

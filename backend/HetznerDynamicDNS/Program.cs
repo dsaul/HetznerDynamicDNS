@@ -1,13 +1,9 @@
-
+// (c) 2023 Dan Saul
 using DanSaul.SharedCode.Hetzner;
 using DanSaul.SharedCode.StandardizedEnvironmentVariables;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 using Serilog;
 using Serilog.Events;
-using System.Net.Http;
-using System.Xml.Linq;
 
 namespace HetznerDynamicDNS
 {
@@ -32,9 +28,12 @@ namespace HetznerDynamicDNS
 
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
+			builder.Host.UseSerilog((HostBuilderContext ctx, LoggerConfiguration lc) =>
+			{
+				lc.WriteTo.Console();
+			});
 
-			
+
 			builder.Services.AddSingleton<HttpClient>((IServiceProvider serviceProvider) =>
 			{
 				return new HttpClient();

@@ -1,0 +1,29 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+# Add packages we need.
+RUN apt-get update && apt-get install -y \
+	bash \
+	&& rm -rf /var/lib/apt/lists/*
+	
+RUN mkdir -p /app
+ADD ./backend /source
+WORKDIR /source
+
+RUN ls -la
+WORKDIR /source/HetznerDynamicDNS
+RUN dotnet restore && dotnet publish --output /app --configuration Debug
+
+WORKDIR /app
+RUN ls -laR
+
+# STAGE 3 - Package
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as final
+
+# Data Protection Keys
+VOLUME /root/.aspnet/DataProtection-Keys
+
+COPY --from=build /app /app
+
+ADD docker/entry.sh /entry.sh
+
+CMD ["/entry.sh"]

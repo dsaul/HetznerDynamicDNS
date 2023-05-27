@@ -4,13 +4,13 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "HETZNER_API_KEY": "xxx",
-        "HETZNER_TARGET_ZONE": "xxx",
-        "HETZNER_TARGET_RECORD_NAME": "xxx",
-        "HETZNER_TARGET_RECORD_TYPE": "xxx"
-      },
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "HETZNER_API_KEY": "xxxx",
+            "HETZNER_TARGET_ZONE": "xxxx",
+            "HETZNER_TARGET_RECORD_NAME": "xxxx",
+            "HETZNER_TARGET_RECORD_TYPE": "xxxx"
+        },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5211"
     },
